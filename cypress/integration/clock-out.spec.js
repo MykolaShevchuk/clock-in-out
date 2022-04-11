@@ -2,6 +2,7 @@
 
 describe('ClockOut', () => {
   it('ClockOut', () => {
+    cy.wait(Math.floor(Math.random() * 8) * 60000);
     cy.visit('https://live.timeclock365.com/login')
     cy.get('input[placeholder="Username"]').type(Cypress.env('USERNAME'));
     cy.get('.login-page__submit').click();
