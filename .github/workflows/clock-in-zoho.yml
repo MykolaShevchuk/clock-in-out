@@ -5,14 +5,11 @@ on:
 
 jobs:
   zoho-people:
-    runs-on: ubuntu-latest
-    container: vyatsyk/selenium-firefox
+    runs-on: ubuntu-20.04
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Install dependencies
         run: npm install
-      - name: Start geckodriver
-        run: geckodriver &
       - name: Clock in
         run: node clock-in.js
