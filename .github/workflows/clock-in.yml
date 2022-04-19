@@ -3,10 +3,10 @@ name: ClockIn
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 5 * * 1-5"
+    - cron: '30 5 * * 1-5'
 
 jobs:
-  cypress-run:
+  timeclock365:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

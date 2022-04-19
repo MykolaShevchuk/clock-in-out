@@ -1,0 +1,18 @@
+name: Clock - In
+
+on:
+  workflow_dispatch:
+
+jobs:
+  zoho-people:
+    runs-on: ubuntu-latest
+    container: vyatsyk/selenium-firefox
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
+      - name: Clock In
+        run: |
+          geckodriver & \
+          node clock-in.js
