@@ -3,6 +3,7 @@ const { authenticator } = require('otplib');
 const firefox = require('selenium-webdriver/firefox');
 
 (async function () {
+  console.log('Check-in start');
   const driver = await new Builder()
     .forBrowser('firefox')
     .setFirefoxOptions(
@@ -42,7 +43,7 @@ const firefox = require('selenium-webdriver/firefox');
       console.log('Logged out');
     }
     await driver.quit();
-    console.log('Clocked in successfuly');
+    console.log('Check-in finish');
   }
 
   async function get(selector, timeout) {
