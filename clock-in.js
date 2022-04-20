@@ -34,6 +34,8 @@ const firefox = require('selenium-webdriver/firefox');
     await (await contains('.in.chlodIng', 'Check-in', 60000)).click();
     await contains('.out.chlodIng', 'Check-out');
     console.log('Check in');
+  } catch (e) {
+    console.error(e);
   } finally {
     if (driver) {
       await click('#zpeople_userimage');

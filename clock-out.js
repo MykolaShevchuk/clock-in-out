@@ -34,6 +34,8 @@ const { authenticator } = require('otplib');
     await contains('.in.chlodIng', 'Check-in');
 
     console.log('Check out');
+  } catch (e) {
+    console.error(e);
   } finally {
     if (driver) {
       await click('#zpeople_userimage');
