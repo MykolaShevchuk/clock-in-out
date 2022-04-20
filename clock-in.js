@@ -10,6 +10,7 @@ const firefox = require('selenium-webdriver/firefox');
       new firefox.Options().setPreference('geo.enabled', false).headless()
     )
     .build();
+  let err = null;
 
   try {
     await driver.get('https://people.israelit.pro/');
@@ -35,6 +36,7 @@ const firefox = require('selenium-webdriver/firefox');
     await contains('.out.chlodIng', 'Check-out');
     console.log('Check in');
   } catch (e) {
+    err = e;
     console.error(e);
   } finally {
     if (driver) {
@@ -46,6 +48,10 @@ const firefox = require('selenium-webdriver/firefox');
     }
     await driver.quit();
     console.log('Check-in finish');
+  }
+
+  if (err != null) {
+    throw err;
   }
 
   async function get(selector, timeout) {

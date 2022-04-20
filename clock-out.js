@@ -9,6 +9,7 @@ const { authenticator } = require('otplib');
       new firefox.Options().setPreference('geo.enabled', false).headless()
     )
     .build();
+  let err = null;
 
   try {
     await driver.get('https://people.israelit.pro/');
@@ -35,6 +36,7 @@ const { authenticator } = require('otplib');
 
     console.log('Check out');
   } catch (e) {
+    err = e;
     console.error(e);
   } finally {
     if (driver) {
@@ -46,6 +48,10 @@ const { authenticator } = require('otplib');
     }
     await driver.quit();
     console.log('Check-out finish');
+  }
+
+  if (err != null) {
+    throw err;
   }
 
   async function get(selector, timeout) {
