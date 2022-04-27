@@ -2,8 +2,7 @@
 
 describe('ClockIn', () => {
   it('ClockIn', () => {
-    cy.wait(Math.floor(Math.random() * 8) * 60000);
-    cy.visit('https://live.timeclock365.com/login')
+    cy.visit('https://live.timeclock365.com/login');
     cy.get('input[placeholder="Username"]').type(Cypress.env('USERNAME'));
     cy.get('.login-page__submit').click();
     cy.get('input[placeholder="Password"]').type(Cypress.env('PASSWORD'));
@@ -15,5 +14,5 @@ describe('ClockIn', () => {
 
     cy.contains('.dashboard-select__text', 'R&D').should('exist');
     cy.contains('.base-modal__button', 'Punch in and start task').click();
-  })
-})
+  });
+});
