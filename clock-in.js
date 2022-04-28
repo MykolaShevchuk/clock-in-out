@@ -32,7 +32,7 @@ const firefox = require('selenium-webdriver/firefox');
 
     console.log('Logged in');
 
-    await (await contains('.in.chlodIng', 'Check-in', 60000)).click();
+    await (await contains('.in.chlodIng', 'Check-in', 120000)).click();
     await contains('.out.chlodIng', 'Check-out');
     console.log('Check in');
   } catch (e) {

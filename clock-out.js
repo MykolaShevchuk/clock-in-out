@@ -31,7 +31,7 @@ const { authenticator } = require('otplib');
 
     console.log('Logged in');
 
-    await (await contains('.out.chlodIng', 'Check-out', 60000)).click();
+    await (await contains('.out.chlodIng', 'Check-out', 120000)).click();
     await contains('.in.chlodIng', 'Check-in');
 
     console.log('Check out');
