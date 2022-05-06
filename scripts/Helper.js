@@ -11,8 +11,7 @@ class Helper {
     const driver = await new Builder()
       .forBrowser('firefox')
       .setFirefoxOptions(
-        // new firefox.Options().setPreference('geo.enabled', false).headless()
-        new firefox.Options().setPreference('geo.enabled', false)
+        new firefox.Options().setPreference('geo.enabled', false).headless()
       )
       .build();
 
