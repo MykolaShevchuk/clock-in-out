@@ -14,7 +14,7 @@ const { login, logout } = require('./common');
     isLoggedIn = true;
 
     await (await contains('.out.chlodIng', 'Check-out', 120000)).click();
-    await contains('.in.chlodIng', 'Check-in');
+    await helper.contains('.in.chlodIng', 'Check-in');
 
     console.log('Check out');
   } catch (e) {
