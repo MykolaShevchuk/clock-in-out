@@ -13,7 +13,7 @@ const { login, logout } = require('./common');
     await login(helper);
     isLoggedIn = true;
 
-    await (await contains('.out.chlodIng', 'Check-out', 120000)).click();
+    await (await helper.contains('.out.chlodIng', 'Check-out', 120000)).click();
     await helper.contains('.in.chlodIng', 'Check-in');
 
     console.log('Check out');
