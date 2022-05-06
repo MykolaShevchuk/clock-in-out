@@ -6,29 +6,9 @@ on:
     - cron: '40 14 * * 1-5'
 
 jobs:
-  cypress-run:
+  timeclock365:
     runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          spec: cypress/integration/clock-out.spec.js
-        env:
-          CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
-          CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
-
-      - name: Save artifact
-        uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-
-  zoho-people:
-    runs-on: ubuntu-20.04
+    timeout-minutes: 20
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -37,7 +17,23 @@ jobs:
         run: npm install
 
       - name: Clock out
-        run: node clock-out.js
+        run: node scripts/timeclock-punch-out.js
+        env:
+          TIMECLOCK_EMAIL: ${{ secrets.TIMECLOCK_EMAIL }}
+          TIMECLOCK_PASSWORD: ${{ secrets.TIMECLOCK_PASSWORD }}
+
+  zoho-people:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Clock out
+        run: node scripts/clock-out.js
         env:
           ZOHO_EMAIL: ${{ secrets.ZOHO_EMAIL }}
           ZOHO_PASSWORD: ${{ secrets.ZOHO_PASSWORD }}
