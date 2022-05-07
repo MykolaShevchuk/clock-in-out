@@ -1,4 +1,6 @@
 const { authenticator } = require('otplib');
+const { formatInTimeZone } = require('date-fns-tz');
+const daysOff = require('./daysOff');
 
 const login = async (helper) => {
   await helper.visit('https://people.israelit.pro/');
@@ -32,7 +34,14 @@ const logout = async (helper) => {
   console.log('Logged out');
 };
 
+const isDayOff = () => {
+  const today = formatInTimeZone(new Date(), 'Europe/Kiev', 'dd/MM');
+
+  return daysOff.includes(today);
+};
+
 module.exports = {
   login,
   logout,
+  isDayOff,
 };

@@ -1,5 +1,10 @@
 const Helper = require('./Helper');
-const { login, logout } = require('./common');
+const { login, logout, isDayOff } = require('./common');
+
+if (isDayOff()) {
+  console.log('Day off skipping job');
+  process.exit(1);
+}
 
 (async function () {
   console.log('Check-in start');
