@@ -3,7 +3,7 @@ const { login, logout, isDayOff } = require('./common');
 
 if (isDayOff()) {
   console.log('Day off skipping job');
-  process.exit(1);
+  process.exit(0);
 }
 
 (async function () {

@@ -3,7 +3,7 @@ const Helper = require('./Helper');
 
 if (isDayOff()) {
   console.log('Day off skipping job');
-  process.exit(1);
+  process.exit(0);
 }
 
 (async function () {
