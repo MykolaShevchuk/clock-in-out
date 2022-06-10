@@ -5,20 +5,20 @@ on:
   schedule:
     - cron: '30 5 * * 1-5'
 
-  jobs:
-    zoho-people:
-      runs-on: ubuntu-20.04
-      timeout-minutes: 20
-      steps:
-        - name: Check out repository code
-          uses: actions/checkout@v3
+jobs:
+  zoho-people:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
 
-        - name: Install dependencies
-          run: npm install
+      - name: Install dependencies
+        run: npm install
 
-        - name: Clock in
-          run: node scripts/clock-in.js
-          env:
-            ZOHO_EMAIL: ${{ secrets.ZOHO_EMAIL }}
-            ZOHO_PASSWORD: ${{ secrets.ZOHO_PASSWORD }}
-            ZOHO_TOTP: ${{ secrets.ZOHO_TOTP }}
+      - name: Clock in
+        run: node scripts/clock-in.js
+        env:
+          ZOHO_EMAIL: ${{ secrets.ZOHO_EMAIL }}
+          ZOHO_PASSWORD: ${{ secrets.ZOHO_PASSWORD }}
+          ZOHO_TOTP: ${{ secrets.ZOHO_TOTP }}
