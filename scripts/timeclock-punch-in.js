@@ -26,6 +26,8 @@ if (isDayOff()) {
     );
     await helper.click('.login-page__submit');
 
+    await helper.visit('https://live.timeclock365.com/en/admin/dashboard');
+
     await (
       await helper.contains('.dashboard-location-type__type', 'Home')
     ).click();
