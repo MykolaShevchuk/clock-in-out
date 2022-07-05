@@ -3,9 +3,25 @@ name: ClockIn
 on:
   workflow_dispatch:
   schedule:
-    - cron: '20,30,40 5 * * 1-5'
+    - cron: '30 5 * * 1-5'
 
 jobs:
+  timeclock365:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Clock in
+        run: node scripts/timeclock-punch-in.js
+        env:
+          TIMECLOCK_EMAIL: ${{ secrets.TIMECLOCK_EMAIL }}
+          TIMECLOCK_PASSWORD: ${{ secrets.TIMECLOCK_PASSWORD }}
+
   zoho-people:
     runs-on: ubuntu-20.04
     timeout-minutes: 20
