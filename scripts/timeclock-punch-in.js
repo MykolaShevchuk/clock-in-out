@@ -25,6 +25,8 @@ if (isDayOff()) {
       process.env.TIMECLOCK_PASSWORD
     );
     await helper.click('.login-page__submit');
+    
+    await helper.contains('button.dashboard-punch__punch-btn', 'כניסה')
 
     await helper.visit('https://live.timeclock365.com/en/admin/dashboard');
 
