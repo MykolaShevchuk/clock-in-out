@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { Builder } = require('selenium-webdriver');
 const firefox = require('selenium-webdriver/firefox');
 const { By, until } = require('selenium-webdriver');
