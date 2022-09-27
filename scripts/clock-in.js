@@ -22,6 +22,8 @@ if (isDayOff()) {
     await helper.contains('.out.chlodIng', 'Check-out');
     console.log('Check in');
   } catch (e) {
+    await helper.savePage('./artifacts/error.html');
+    await helper.screenshot('./artifacts/error.png');
     err = e;
     console.error(e);
   } finally {
@@ -29,7 +31,9 @@ if (isDayOff()) {
       await logout(helper);
     }
     await helper.quit();
-    console.log('Check-in finish');
+    if (!err) {
+      console.log('Check-in finish');
+    }
   }
 
   if (err != null) {

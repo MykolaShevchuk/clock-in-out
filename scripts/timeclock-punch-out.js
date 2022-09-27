@@ -1,5 +1,6 @@
 const { isDayOff } = require('./common');
 const Helper = require('./Helper');
+const { writeFileSync } = require('fs');
 
 if (isDayOff()) {
   console.log('Day off skipping job');
@@ -38,6 +39,8 @@ if (isDayOff()) {
 
     console.log('Check out');
   } catch (e) {
+    await helper.savePage('./artifacts/error.html');
+    await helper.screenshot('./artifacts/error.png');
     err = e;
     console.error(e);
   } finally {

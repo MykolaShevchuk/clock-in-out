@@ -42,6 +42,8 @@ if (isDayOff()) {
 
     console.log('Check in');
   } catch (e) {
+    await helper.savePage('./artifacts/error.html');
+    await helper.screenshot('./artifacts/error.png');
     err = e;
     console.error(e);
   } finally {
