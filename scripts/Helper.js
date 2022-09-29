@@ -3,8 +3,9 @@ const { Builder } = require('selenium-webdriver');
 const firefox = require('selenium-webdriver/firefox');
 const { By, until } = require('selenium-webdriver');
 const { writeFileSync, mkdirSync } = require('fs');
+const { delay } = require('./utils');
 
-mkdirSync('./artifacts');
+mkdirSync('./artifacts', { recursive: true });
 
 class Helper {
   constructor(driver) {
@@ -44,15 +45,27 @@ class Helper {
 
   async contains(selector, text, timeout) {
     console.log(`Contains element "${selector}" with text "${text}"`);
-    const els = await this.driver.wait(
-      until.elementsLocated(By.css(selector)),
-      timeout || 6000
-    );
-    for (let el of els) {
-      const elText = await el.getText();
-      if (elText.indexOf(text) >= 0) {
-        return el;
+    const run = async () => {
+      const els = await this.driver.wait(
+        until.elementsLocated(By.css(selector)),
+        timeout || 6000
+      );
+      for (let el of els) {
+        const elText = await el.getText();
+        if (elText.indexOf(text) >= 0) {
+          return el;
+        }
       }
+    };
+
+    for (let i = 0; i < 3; i++) {
+      try {
+        const el = await run();
+        if (el) {
+          return el;
+        }
+      } catch (e) {}
+      await delay(2000);
     }
     throw new Error(`Element "${selector}" with text "${text}" not found.`);
   }
