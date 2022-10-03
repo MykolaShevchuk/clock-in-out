@@ -20,6 +20,13 @@ const login = async (helper) => {
   );
   await helper.click('#nextbtn');
 
+  try {
+    await (
+      await helper.contains('.remind_later_link', 'Remind me later', 120000)
+    ).click();
+    console.log('Clicked confirm your location.');
+  } catch (e) {}
+
   console.log('Logged in');
 };
 
