@@ -25,7 +25,7 @@ const login = async (helper) => {
 
   try {
     await (
-      await helper.contains('.remind_later_link', 'Remind me later', 120000)
+      await helper.contains('.remind_later_link', 'Remind me later', 20000)
     ).click();
     console.log('Clicked confirm your location.');
   } catch (e) {}
@@ -35,7 +35,7 @@ const login = async (helper) => {
       await helper.contains(
         '.btn.secoundary_btn.inline',
         'Remind me later',
-        120000
+        20000
       )
     ).click();
     console.log('Clicked ignore zoho OneAuth.');
