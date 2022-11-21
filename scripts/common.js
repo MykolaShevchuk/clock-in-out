@@ -1,6 +1,7 @@
 const { authenticator } = require('otplib');
 const { formatInTimeZone } = require('date-fns-tz');
 const daysOff = require('./daysOff');
+const { delay } = require('./utils');
 
 const login = async (helper) => {
   await helper.visit('https://people.israelit.pro/');
@@ -8,11 +9,13 @@ const login = async (helper) => {
     'input[placeholder="Email address or mobile number"]',
     process.env.ZOHO_EMAIL || 'asd'
   );
+  await delay(1000);
   await helper.click('#nextbtn');
   await helper.type(
     'input[placeholder="Enter password"]',
     process.env.ZOHO_PASSWORD || 'asd'
   );
+  await delay(1000);
   await helper.click('#nextbtn');
   await helper.type(
     'input[placeholder="Enter TOTP"]',
