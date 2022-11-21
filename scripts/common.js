@@ -30,6 +30,17 @@ const login = async (helper) => {
     console.log('Clicked confirm your location.');
   } catch (e) {}
 
+  try {
+    await (
+      await helper.contains(
+        '.btn.secoundary_btn.inline',
+        'Remind me later',
+        120000
+      )
+    ).click();
+    console.log('Clicked ignore zoho OneAuth.');
+  } catch (e) {}
+
   console.log('Logged in');
 };
 
