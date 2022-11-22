@@ -1,0 +1,11 @@
+name: ClockIn
+
+on:
+  workflow_dispatch:
+
+jobs:
+  timeclock365:
+    runs-on: self-hosted
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3

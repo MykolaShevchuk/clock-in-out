@@ -3,7 +3,7 @@ name: ClockIn
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 5 * * 1-5'
+    - cron: '30 4 * * 1-5'
 
 jobs:
   timeclock365:
@@ -22,6 +22,13 @@ jobs:
           TIMECLOCK_EMAIL: ${{ secrets.TIMECLOCK_EMAIL }}
           TIMECLOCK_PASSWORD: ${{ secrets.TIMECLOCK_PASSWORD }}
 
+      - name: Save error data
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: timeclock-clock-in
+          path: artifacts/
+
   zoho-people:
     runs-on: ubuntu-20.04
     timeout-minutes: 20
@@ -38,3 +45,10 @@ jobs:
           ZOHO_EMAIL: ${{ secrets.ZOHO_EMAIL }}
           ZOHO_PASSWORD: ${{ secrets.ZOHO_PASSWORD }}
           ZOHO_TOTP: ${{ secrets.ZOHO_TOTP }}
+
+      - name: Save error data
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: zoho-clock-in
+          path: artifacts/

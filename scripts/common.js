@@ -1,6 +1,7 @@
 const { authenticator } = require('otplib');
 const { formatInTimeZone } = require('date-fns-tz');
 const daysOff = require('./daysOff');
+const { delay } = require('./utils');
 
 const login = async (helper) => {
   await helper.visit('https://people.israelit.pro/');
@@ -8,17 +9,37 @@ const login = async (helper) => {
     'input[placeholder="Email address or mobile number"]',
     process.env.ZOHO_EMAIL || 'asd'
   );
+  await delay(1000);
   await helper.click('#nextbtn');
   await helper.type(
     'input[placeholder="Enter password"]',
     process.env.ZOHO_PASSWORD || 'asd'
   );
+  await delay(1000);
   await helper.click('#nextbtn');
   await helper.type(
     'input[placeholder="Enter TOTP"]',
     authenticator.generate(process.env.ZOHO_TOTP || 'aSDads')
   );
   await helper.click('#nextbtn');
+
+  try {
+    await (
+      await helper.contains('.remind_later_link', 'Remind me later', 20000)
+    ).click();
+    console.log('Clicked confirm your location.');
+  } catch (e) {}
+
+  try {
+    await (
+      await helper.contains(
+        '.btn.secoundary_btn.inline',
+        'Remind me later',
+        20000
+      )
+    ).click();
+    console.log('Clicked ignore zoho OneAuth.');
+  } catch (e) {}
 
   console.log('Logged in');
 };
