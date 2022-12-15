@@ -9,13 +9,13 @@ const login = async (helper) => {
     'input[placeholder="Email address or mobile number"]',
     process.env.ZOHO_EMAIL || 'asd'
   );
-  await delay(1000);
+  await delay(2000);
   await helper.click('#nextbtn');
   await helper.type(
     'input[placeholder="Enter password"]',
     process.env.ZOHO_PASSWORD || 'asd'
   );
-  await delay(1000);
+  await delay(2000);
   await helper.click('#nextbtn');
   await helper.type(
     'input[placeholder="Enter TOTP"]',
