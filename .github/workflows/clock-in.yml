@@ -2,8 +2,8 @@ name: ClockIn
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '30 6 * * 1-5'
+  # schedule:
+  #   - cron: '30 6 * * 1-5'
 
 jobs:
   timeclock365:
