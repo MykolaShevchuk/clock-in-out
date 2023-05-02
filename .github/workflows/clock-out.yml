@@ -3,32 +3,9 @@ name: ClockOut
 on:
   workflow_dispatch:
   schedule:
-    - cron: '40 15 * * 1-5'
+    - cron: '40 14 * * 1-5'
 
 jobs:
-  timeclock365:
-    runs-on: ubuntu-20.04
-    timeout-minutes: 20
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Clock out
-        run: node scripts/timeclock-punch-out.js
-        env:
-          TIMECLOCK_EMAIL: ${{ secrets.TIMECLOCK_EMAIL }}
-          TIMECLOCK_PASSWORD: ${{ secrets.TIMECLOCK_PASSWORD }}
-
-      - name: Save error data
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: timeclock-clock-out
-          path: artifacts/
-
   zoho-people:
     runs-on: ubuntu-20.04
     timeout-minutes: 20
