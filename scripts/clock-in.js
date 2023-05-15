@@ -18,7 +18,9 @@ if (isDayOff()) {
     await login(helper);
     isLoggedIn = true;
 
-    await (await helper.contains('.in.chlodIng', 'Check-in', 120000)).click();
+    await (
+      await helper.contains('.in.chlodIng', 'Check-in', 3 * 60 * 1000)
+    ).click(); // timeout 3 mins
     await helper.contains('.out.chlodIng', 'Check-out');
     console.log('Check in');
   } catch (e) {
