@@ -17,8 +17,10 @@ const login = async (helper) => {
   );
   await delay(2000);
   await helper.click('#nextbtn');
+
+  // Input TOTP
   await helper.type(
-    'input[placeholder="Enter TOTP"]',
+    '#mfa_totp_full_value',
     authenticator.generate(process.env.ZOHO_TOTP || 'aSDads')
   );
   await helper.click('#nextbtn');
