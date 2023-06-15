@@ -19,10 +19,13 @@ const login = async (helper) => {
   await helper.click('#nextbtn');
 
   // Input TOTP
-  await helper.type(
-    '#mfa_totp_full_value',
-    authenticator.generate(process.env.ZOHO_TOTP || 'aSDads')
-  );
+  await helper.get('#mfa_totp'); // wait for totp container
+  const totp = authenticator.generate(process.env.ZOHO_TOTP || 'aSDads');
+  await helper.driver.executeScript(`
+    const input = document.querySelector('#mfa_totp_full_value');
+    input.value = '${totp}'
+  `);
+
   await helper.click('#nextbtn');
 
   try {
