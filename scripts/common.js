@@ -4,7 +4,7 @@ const daysOff = require('./daysOff');
 const { delay } = require('./utils');
 
 const login = async (helper) => {
-  await helper.visit('https://people.israelit.pro/');
+  await helper.visit('https://people.group107.com/');
   await helper.click('.btnlogin');
   await helper.type(
     'input[placeholder="Email address or mobile number"]',
