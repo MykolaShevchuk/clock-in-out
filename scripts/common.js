@@ -57,7 +57,7 @@ const login = async (helper) => {
 
 const logout = async (helper) => {
   await helper.click('#zpeople_userimage');
-  await (await helper.contains('.ZPSOut', 'Sign Out')).click();
+  await (await helper.contains('.zpl_signout', 'Sign Out')).click();
   await helper.get(
     'input[placeholder="Email address or mobile number"]',
     30000

@@ -19,9 +19,9 @@ if (isDayOff()) {
     isLoggedIn = true;
 
     await (
-      await helper.contains('.in.chlodIng', 'Check-in', 3 * 60 * 1000)
+      await helper.contains('#ZPAtt_check_in_out p', 'Check-in', 3 * 60 * 1000)
     ).click(); // timeout 3 mins
-    await helper.contains('.out.chlodIng', 'Check-out');
+    await helper.contains('#ZPAtt_check_in_out p', 'Check-out');
     console.log('Check in');
   } catch (e) {
     await helper.savePage('./artifacts/error.html');

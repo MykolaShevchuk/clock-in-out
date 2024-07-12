@@ -18,8 +18,10 @@ if (isDayOff()) {
     await login(helper);
     isLoggedIn = true;
 
-    await (await helper.contains('.out.chlodIng', 'Check-out', 120000)).click();
-    await helper.contains('.in.chlodIng', 'Check-in');
+    await (
+      await helper.contains('#ZPAtt_check_in_out p', 'Check-out', 120000)
+    ).click();
+    await helper.contains('#ZPAtt_check_in_out p', 'Check-in');
 
     console.log('Check out');
   } catch (e) {
