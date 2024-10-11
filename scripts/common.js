@@ -52,6 +52,14 @@ const login = async (helper) => {
     console.log('Clicked ignore zoho OneAuth.');
   } catch (e) {}
 
+  try {
+    await helper.click('.remind-later');
+    await (
+      await helper.contains('.remind-list', "Don't show again", 20000)
+    ).click();
+    console.log('Clicked "Don\'t show again" zoho OneAuth.');
+  } catch (e) {}
+
   console.log('Logged in');
 };
 
